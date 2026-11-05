@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-800 antialiased selection:bg-navy-700 selection:text-white;
+  }
+}
+
+/* Custom fine touches for classic corporate styling */
+.nav-link {
+  @apply relative py-1 text-sm font-medium text-slate-600 transition-colors hover:text-navy-800;
+}
+
+.nav-link.active {
+  @apply text-navy-800 font-semibold;
+}
+
+.nav-link.active::after {
+  content: '';
+  @apply absolute bottom-0 left-0 right-0 h-0.5 bg-navy-700 rounded-full;
+}
+
+/* Smooth toast animation */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toast-enter {
+  animation: slideUpFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Print styling */
+@media print {
+  nav, #mobile-menu, #toast, .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .shadow-sm, .shadow-md, .shadow-lg {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  section {
+    page-break-inside: avoid;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+}
